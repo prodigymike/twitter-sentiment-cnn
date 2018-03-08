@@ -438,7 +438,8 @@ if FLAGS.save_protobuf:
     input_graph_path = os.path.join(RUN_DIR, input_graph_name)
     input_saver_def_path = ""
     input_binary = False
-    input_checkpoint_path = os.path.join(FLAGS.checkpoint_dir, 'saved_checkpoint') + "-0"
+    # input_checkpoint_path = os.path.join(FLAGS.checkpoint_dir, 'saved_checkpoint') + "-0"
+    input_checkpoint_path = os.path.join(RUN_DIR, 'saved_checkpoint') + "-0"
 
     # Note that we this normally should be only "output_node"!!!
     output_node_names = "Dense2/output_node"
