@@ -2,7 +2,8 @@ import tensorflow as tf
 from tensorflow.python.saved_model import signature_constants
 from tensorflow.python.saved_model import tag_constants
 
-export_dir = './saved'
+# export_dir = './saved'
+export_dir = './output'
 graph_pb = 'my_quant_graph.pb'
 
 builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
