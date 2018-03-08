@@ -442,8 +442,8 @@ if FLAGS.save_protobuf:
     input_checkpoint_path = os.path.join(RUN_DIR, 'saved_checkpoint') + "-0"
 
     # Note that we this normally should be only "output_node"!!!
-    output_node_names = "Dense2/output_node"
-    # output_node_names = ['output/Softmax']
+    # output_node_names = "Dense2/output_node"
+    output_node_names = ['output/Softmax']
 
     restore_op_name = "save/restore_all"
     filename_tensor_name = "save/Const:0"
