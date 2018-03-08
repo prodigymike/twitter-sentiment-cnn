@@ -26,21 +26,21 @@ for the script to work (see [here](https://www.tensorflow.org/)).
 Once you've installed and configured Tensorflow, download the source
 files and `cd` into the folder:
 ```sh
-$ git clone https://gitlab.com/prodigymike/twitter-sentiment-cnn.git
-$ cd twitter-sentiment-cnn
+git clone https://gitlab.com/prodigymike/twitter-sentiment-cnn.git
+cd twitter-sentiment-cnn
 ```
 Before being able to use the script, some setup is needed; download the
 dataset from the link above by running:
 ```sh
-$ python dataset_downloader.py
+python dataset_downloader.py
 ```
 Read the dataset from the CSV into two files (.pos and .neg) with:
 ```sh
-$ python csv_parser.py
+python csv_parser.py
 ```
 And generate a CSV with the vocabulary (and its inverse mapping) with:
 ```sh
-$ python vocab_builder.py
+python vocab_builder.py
 ```
 The files will be created in the `twitter-sentiment-dataset/` folder.
 Finally, create an `output/` folder that will contain all session
@@ -53,7 +53,7 @@ Now everything is set up and you're ready to start training the model.
 ## Usage
 The simplest way to run the script is:
 ```sh
-$ python twitter-sentiment-cnn.py
+python twitter-sentiment-cnn.py
 ```
 which will load the dataset in memory, create the computation graph, and
 quit. Try to run the script like this to see if everything is set up
@@ -65,7 +65,7 @@ python twitter-sentiment-cnn.py --train --save
 ```
 After training, we can test the network as follows:
 ```sh
-$ python twitter-sentiment-cnn.py --load path/to/ckpt/folder/ --custom_input 'I love neural networks!'
+python twitter-sentiment-cnn.py --load path/to/ckpt/folder/ --custom_input 'I love neural networks!'
 ```
 which will eventually output: 
 ```
@@ -78,7 +78,7 @@ Actual output: [ 0.19249919  0.80750078]
 
 By running: 
 ```sh 
-$ python twitter-sentiment-cnn.py -h
+python twitter-sentiment-cnn.py -h
 ```
 the script will output a list of all customizable flags and parameters.
 The parameters are:
@@ -116,8 +116,8 @@ as follows:
 
 ```sh
 # Current directoty: twitter-sentiment-cnn/
-$ unzip path/to/run20180201-231509.zip
-$ python twitter-sentiment-cnn.py --load path/to/run20180201-231509/ --custom_input "I love neural networks!"
+unzip path/to/run20180201-231509.zip
+python twitter-sentiment-cnn.py --load path/to/run20180201-231509/ --custom_input "I love neural networks!"
 ```
 
 Running this command should give you something like:
@@ -205,7 +205,7 @@ as follows:
 The script will automatically log the session with Tensorboard. To
 visualize the computation graph and training metrics run:
 ```sh
-$ tensorboard --logdir output/path/to/summaries/
+tensorboard --logdir output/path/to/summaries/
 ```
 and then navigate to `localhost:6006` from your browser (you'll see the
 computation graph in the *Graph* section).
