@@ -6,3 +6,8 @@ vocab.csv
 vocab_inv.csv
 twitter-sentiment-dataset/
 /.idea/
+/bin/
+/include/
+/lib/
+/man/
+/share/
