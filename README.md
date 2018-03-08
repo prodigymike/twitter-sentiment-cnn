@@ -1,4 +1,8 @@
 # Twitter sentiment classification by Daniele Grattarola
+
+ProdigyMike says: I've extended this to work with Tensorflow Model Server. In this pursuit, I also had to improve to 
+export images that work with Tensorflow Model Server.
+
 This is a TensorFlow implementation of a convolutional neural
 network (CNN) to perform sentiment classification on tweets.
 
@@ -22,7 +26,7 @@ for the script to work (see [here](https://www.tensorflow.org/)).
 Once you've installed and configured Tensorflow, download the source
 files and `cd` into the folder:
 ```sh
-$ git clone https://gitlab.com/danielegrattarola/twitter-sentiment-cnn.git
+$ git clone https://gitlab.com/prodigymike/twitter-sentiment-cnn.git
 $ cd twitter-sentiment-cnn
 ```
 Before being able to use the script, some setup is needed; download the
