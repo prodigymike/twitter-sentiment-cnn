@@ -2,6 +2,7 @@ import urllib
 import os
 import zipfile
 
+# Download the dataset that powers step 2, csv_parser.py
 DATASET_FOLDER = 'twitter-sentiment-dataset/'
 URL = 'http://thinknook.com/wp-content/uploads/2012/09/Sentiment-Analysis-Dataset.zip'
 

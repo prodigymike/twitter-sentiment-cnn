@@ -1,7 +1,11 @@
 # Twitter sentiment classification by Daniele Grattarola
 
-ProdigyMike says: I've extended this to work with Tensorflow Model Server. In this pursuit, I also had to improve to 
+> **This is a work in progress!**
+
+**ProdigyMike says:** I've extended this to work with Tensorflow Model Server. In this pursuit, I also had to improve to 
 export images that work with Tensorflow Model Server.
+
+**ProdigyMike also says:** I'm new to Python, so some of my code may be a bit jacked up for the time being.
 
 This is a TensorFlow implementation of a convolutional neural
 network (CNN) to perform sentiment classification on tweets.
