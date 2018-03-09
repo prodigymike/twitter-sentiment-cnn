@@ -432,21 +432,13 @@ if FLAGS.save_protobuf:
     # export_dir = RUN_DIR
     export_dir = RUN_DIR + '_SavedModel'
 
-    # signature_def_map = {
-    #     tf.saved_model.signature_constants.REGRESS_METHOD_NAME:
-    #         signature_def,
-    #     tf.saved_model.signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY:
-    #         predict_signature_def
-    # }
-
+    # SavedModel: Build graph
     builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
     with tf.Session(graph=tf.Graph()) as sess:
         builder.add_meta_graph_and_variables(sess,
-                                             # [tag_constants.TRAINING],
-                                             # signature_def_map=foo_signatures,
-                                             [tf.saved_model.tag_constants.TRAINING],
+                                             # [tf.saved_model.tag_constants.TRAINING],
+                                             [tf.saved_model.tag_constants.SERVING],
                                              sess.graph_def,
-                                             # assets_collection=foo_assets)
                                              None,
                                              None,
                                              True,
