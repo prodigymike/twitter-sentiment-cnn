@@ -429,7 +429,7 @@ if FLAGS.save_protobuf:
     #########################
     # MJC: SaveModel addition
     #########################
-    export_dir = ""
+    export_dir = RUN_DIR
 
     builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
     with tf.Session(graph=tf.Graph()) as sess:
