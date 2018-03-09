@@ -437,8 +437,14 @@ if FLAGS.save_protobuf:
         builder.add_meta_graph_and_variables(sess,
                                              # [tag_constants.TRAINING],
                                              [tf.saved_model.tag_constants.TRAINING],
-                                             signature_def_map=foo_signatures,
-                                             assets_collection=foo_assets)
+                                             # signature_def_map=foo_signatures,
+                                             None,
+                                             # assets_collection=foo_assets)
+                                             None,
+                                             None,
+                                             True,
+                                             None
+                                             )
     # Add a second MetaGraphDef for inference.
     with tf.Session(graph=tf.Graph()) as sess:
         # builder.add_meta_graph([tag_constants.SERVING])
