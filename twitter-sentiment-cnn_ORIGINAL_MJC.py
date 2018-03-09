@@ -441,7 +441,12 @@ if FLAGS.save_protobuf:
         builder.add_meta_graph_and_variables(sess,
                                              # [tf.saved_model.tag_constants.TRAINING],  # Tags used to save meta graph.
                                              [tf.saved_model.tag_constants.SERVING],  # Tags used to save meta graph.
-                                             sess.graph_def,
+                                             # sess.graph_def,
+                                             signature_def_map= {
+                                                 "magic_model": tf.saved_model.signature_def_utils.predict_signature_def(
+                                                     inputs={"egg": x, "bacon": y},
+                                                     outputs={"spam": z})
+                                             },
                                              None,
                                              None,
                                              True,
