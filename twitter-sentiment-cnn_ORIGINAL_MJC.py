@@ -443,9 +443,8 @@ if FLAGS.save_protobuf:
     with tf.Session(graph=tf.Graph()) as sess:
         builder.add_meta_graph_and_variables(sess,
                                              # [tag_constants.TRAINING],
-                                             [tf.saved_model.tag_constants.TRAINING],
                                              # signature_def_map=foo_signatures,
-                                             # None,
+                                             [tf.saved_model.tag_constants.TRAINING],
                                              sess.graph_def,
                                              # assets_collection=foo_assets)
                                              None,
