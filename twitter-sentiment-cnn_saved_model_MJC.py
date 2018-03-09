@@ -92,9 +92,9 @@ def evaluate_sentence(sentence, vocabulary):
     log('Actual output:', str(unnorm_result[0]))
 
 # Hyperparameters
-tf.flags.DEFINE_boolean('train', True,
+tf.flags.DEFINE_boolean('train', False,
                         'Should the network perform training? (default: False)')
-tf.flags.DEFINE_boolean('save', True,
+tf.flags.DEFINE_boolean('save', False,
                         'Save session checkpoints (default: False)')
 tf.flags.DEFINE_boolean('save_protobuf', False,
                         'Save session as binary protobuf (default: False)')
