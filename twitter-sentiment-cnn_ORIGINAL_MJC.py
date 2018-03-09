@@ -442,8 +442,7 @@ if FLAGS.save_protobuf:
                                              None,
                                              None,
                                              True,
-                                             None
-                                             )
+                                             None)
     # Add a second MetaGraphDef for inference.
     with tf.Session(graph=tf.Graph()) as sess:
         # builder.add_meta_graph([tag_constants.SERVING])
