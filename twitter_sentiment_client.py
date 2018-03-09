@@ -166,6 +166,8 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
     print(desired_array)
     request.inputs['text'].CopyFrom(
         tf.contrib.util.make_tensor_proto(desired_array, shape=[1, test_data[0].size]))
+    print('request: inputs(text):')
+    print(request.inputs['text'])
     request.inputs['dropout'].CopyFrom(
         tf.contrib.util.make_tensor_proto(1.0,shape=[1,1]))
     result_counter.throttle()
