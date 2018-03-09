@@ -47,6 +47,7 @@ def load_data_and_labels(dataset_fraction):
     positive_examples = list(open(POS_DATASET_PATH).readlines())
     positive_examples = [s.strip() for s in positive_examples]
     print "\tdata_helpers: [OK]"
+
     print "\tdata_helpers: loading negative examples..."
     negative_examples = list(open(NEG_DATASET_PATH).readlines())
     negative_examples = [s.strip() for s in negative_examples]
@@ -91,8 +92,8 @@ def pad_sentences(sentences, padding_word="<PAD/>"):
 
 def pad_sentences_to(sentences, pad_to, padding_word="<PAD/>"):
     """
-    Pads all sentences to the pad_to lenght. 
-    Returns the padded senteces.
+    Pads all sentences to the pad_to length.
+    Returns the padded sentences.
     """
     sequence_length = pad_to
     padded_sentences = []
@@ -158,15 +159,19 @@ def load_data(dataset_fraction):
     """
     # Load and preprocess data
     sentences, labels = load_data_and_labels(dataset_fraction)
+
     print "\tdata_helpers: padding strings..."
     sentences_padded = pad_sentences(sentences)
     print "\tdata_helpers: [OK]"
+
     print "\tdata_helpers: building vocabulary..."
     vocabulary, vocabulary_inv = build_vocab()
     print "\tdata_helpers: [OK]"
+
     print "\tdata_helpers: building processed datasets..."
     x, y = build_input_data(sentences_padded, labels, vocabulary)
     print "\tdata_helpers: [OK]"
+
     return [x, y, vocabulary, vocabulary_inv]
 
 
