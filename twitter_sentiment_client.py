@@ -136,7 +136,7 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
   # print(x)  # ['2' '144' '1073' ..., '0' '0' '0']
   # print(y)  # [0 1]
   print(vocabulary)
-  print(vocabulary_inv)
+  # print(vocabulary_inv)  # ["'kitchen"], ['etenstijd'], ['cocktouch'], ['yelm']
   return
   # Randomly shuffle datas
   np.random.seed(123)
