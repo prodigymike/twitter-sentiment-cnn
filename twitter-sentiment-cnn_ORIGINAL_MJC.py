@@ -429,21 +429,15 @@ if FLAGS.save_protobuf:
     #########################
     # MJC: SaveModel addition
     #########################
-    tf.reset_default_graph()
+    export_dir = ""
 
-    # Re-initialize our two variables
-    h_est = tf.Variable(h_est2, name='hor_estimate2')
-    v_est = tf.Variable(v_est2, name='ver_estimate2')
-
-    # Create a builder
-    builder = tf.saved_model.builder.SavedModelBuilder('./SavedModel/')
-
-    # Add graph and variables to builder and save
-    with tf.Session() as sess:
-        sess.run(h_est.initializer)
-        sess.run(v_est.initializer)
+    builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
+    with tf.Session(graph=tf.Graph()) as sess:
         builder.add_meta_graph_and_variables(sess,
-                                             [tf.saved_model.tag_constants.TRAINING],
-                                             signature_def_map=None,
-                                             assets_collection=None)
+                                             [tag_constants.TRAINING],
+                                             signature_def_map=foo_signatures,
+                                             assets_collection=foo_assets)
+    # Add a second MetaGraphDef for inference.
+    with tf.Session(graph=tf.Graph()) as sess:
+        builder.add_meta_graph([tag_constants.SERVING])
     builder.save()
