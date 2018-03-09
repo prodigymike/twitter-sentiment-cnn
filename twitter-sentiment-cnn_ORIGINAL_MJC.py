@@ -426,33 +426,24 @@ if FLAGS.save_protobuf:
     tf.train.write_graph(minimal_graph, RUN_DIR, 'minimal_graph.txt',
                          as_text=True)
 
-    # MJC: Freeze
-    # We save out the graph to disk, and then call the const conversion
-    # routine.
-    checkpoint_state_name = "checkpoint_state"
-    # input_graph_name = "input_graph.pb"
-    input_graph_name = "minimal_graph.proto"
-    output_graph_name = "output_graph.pb"
+    #########################
+    # MJC: SaveModel addition
+    #########################
+    tf.reset_default_graph()
 
-    # input_graph_path = os.path.join(FLAGS.model_dir, input_graph_name)
-    input_graph_path = os.path.join(RUN_DIR, input_graph_name)
-    input_saver_def_path = ""
-    input_binary = False
-    # input_checkpoint_path = os.path.join(FLAGS.checkpoint_dir, 'saved_checkpoint') + "-0"
-    input_checkpoint_path = os.path.join(RUN_DIR, 'saved_checkpoint') + "-0"
+    # Re-initialize our two variables
+    h_est = tf.Variable(h_est2, name='hor_estimate2')
+    v_est = tf.Variable(v_est2, name='ver_estimate2')
 
-    # Note that we this normally should be only "output_node"!!!
-    # output_node_names = "Dense2/output_node"
-    output_node_names = ['output/Softmax']
+    # Create a builder
+    builder = tf.saved_model.builder.SavedModelBuilder('./SavedModel/')
 
-    restore_op_name = "save/restore_all"
-    filename_tensor_name = "save/Const:0"
-    # output_graph_path = os.path.join(FLAGS.model_dir, output_graph_name)
-    output_graph_path = os.path.join(RUN_DIR, output_graph_name)
-    clear_devices = True
-
-    freeze_graph.freeze_graph(input_graph_path, input_saver_def_path,
-                              input_binary, input_checkpoint_path,
-                              output_node_names, restore_op_name,
-                              filename_tensor_name, output_graph_path,
-                              clear_devices)
+    # Add graph and variables to builder and save
+    with tf.Session() as sess:
+        sess.run(h_est.initializer)
+        sess.run(v_est.initializer)
+        builder.add_meta_graph_and_variables(sess,
+                                             [tf.saved_model.tag_constants.TRAINING],
+                                             signature_def_map=None,
+                                             assets_collection=None)
+    builder.save()
