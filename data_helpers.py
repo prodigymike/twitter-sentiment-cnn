@@ -57,7 +57,7 @@ def load_data_and_labels(dataset_fraction):
 
     # Split by words
     x_text = positive_examples + negative_examples
-    print "\tdata_helpers: cleaning strings..."
+    print "\tdata_helpers: cleaning strings (splitting words)..."
     x_text = [clean_str(sent) for sent in x_text]
     x_text = [s.split(" ") for s in x_text]
     print "\tdata_helpers: [OK]"

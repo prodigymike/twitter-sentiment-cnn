@@ -93,6 +93,7 @@ def _create_rpc_callback(label, result_counter):
     exception = result_future.exception()
     if exception:
       result_counter.inc_error()
+      print('EXCEPTION111:')
       print(exception)
     else:
       sys.stdout.write('.')
@@ -159,9 +160,9 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
     test_data, label = zip(*batch)
     desired_array = [int(numeric_string) for numeric_string in test_data[0]]
     desired_array = np.array(desired_array, dtype=np.int64)
-    print('test_data:')
+    print('test_data[0]:')
     print(test_data[0])
-    print('converted tes data:')
+    print('converted test data (desired_array):')
     print(desired_array)
     request.inputs['text'].CopyFrom(
         tf.contrib.util.make_tensor_proto(desired_array, shape=[1, test_data[0].size]))
