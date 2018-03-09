@@ -365,6 +365,7 @@ if FLAGS.train:
             summary_writer.add_summary(accuracy_summary_result, global_step)
             summary_writer.add_summary(loss_summary_result, global_step)
 
+        # Save interim checkpoint
         if FLAGS.save and global_step % checkpoint_every == 0:
             batches_progressbar.write('Saving checkpoint...')
             log('Saving checkpoint...', verbose=False)
@@ -418,9 +419,10 @@ if FLAGS.save:
 # MJC: Are these the same files, just diff formats (.proto & .txt)?
 if FLAGS.save_protobuf:
     log('Saving Protobuf...')
-    # minimal_graph = convert_variables_to_constants(sess,
-    #                                                sess.graph_def,
-    #                                                ['output/Softmax'])
+    # Replaces all the variables in a graph with constants of the same values.
+    minimal_graph = convert_variables_to_constants(sess,  # Active TensorFlow session containing the variables.
+                                                   sess.graph_def,  # GraphDef object holding the network.
+                                                   ['output/Softmax'])  # Name string list for result nodes of graph.
     # tf.train.write_graph(minimal_graph, RUN_DIR, 'minimal_graph.proto',
     #                      as_text=False)
     # tf.train.write_graph(minimal_graph, RUN_DIR, 'minimal_graph.txt',
@@ -434,10 +436,11 @@ if FLAGS.save_protobuf:
 
     # SavedModel: Build graph
     builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
+
     with tf.Session(graph=tf.Graph()) as sess:
         builder.add_meta_graph_and_variables(sess,
-                                             # [tf.saved_model.tag_constants.TRAINING],
-                                             [tf.saved_model.tag_constants.SERVING],
+                                             # [tf.saved_model.tag_constants.TRAINING],  # Tags used to save meta graph.
+                                             [tf.saved_model.tag_constants.SERVING],  # Tags used to save meta graph.
                                              sess.graph_def,
                                              None,
                                              None,
