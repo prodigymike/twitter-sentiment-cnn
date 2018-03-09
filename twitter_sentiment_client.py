@@ -135,8 +135,8 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
   x, y, vocabulary, vocabulary_inv = load_data(1)
   # print(x)  # ['2' '144' '1073' ..., '0' '0' '0']
   # print(y)  # [0 1]
-  print(vocabulary)
-  # print(vocabulary_inv)  # ["'kitchen"], ['etenstijd'], ['cocktouch'], ['yelm']
+  # print(vocabulary)  # 'breakpoints': '169715', 'shrill': '61929', '1day': '22983'
+  print(vocabulary_inv)  # ["'kitchen"], ['etenstijd'], ['cocktouch'], ['yelm']
   return
   # Randomly shuffle datas
   np.random.seed(123)
