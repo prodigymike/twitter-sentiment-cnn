@@ -418,13 +418,13 @@ if FLAGS.save:
 # MJC: Are these the same files, just diff formats (.proto & .txt)?
 if FLAGS.save_protobuf:
     log('Saving Protobuf...')
-    minimal_graph = convert_variables_to_constants(sess,
-                                                   sess.graph_def,
-                                                   ['output/Softmax'])
-    tf.train.write_graph(minimal_graph, RUN_DIR, 'minimal_graph.proto',
-                         as_text=False)
-    tf.train.write_graph(minimal_graph, RUN_DIR, 'minimal_graph.txt',
-                         as_text=True)
+    # minimal_graph = convert_variables_to_constants(sess,
+    #                                                sess.graph_def,
+    #                                                ['output/Softmax'])
+    # tf.train.write_graph(minimal_graph, RUN_DIR, 'minimal_graph.proto',
+    #                      as_text=False)
+    # tf.train.write_graph(minimal_graph, RUN_DIR, 'minimal_graph.txt',
+    #                      as_text=True)
 
     #########################
     # MJC: SaveModel addition
@@ -432,12 +432,12 @@ if FLAGS.save_protobuf:
     # export_dir = RUN_DIR
     export_dir = RUN_DIR + '_SavedModel'
 
-    signature_def_map = {
-        tf.saved_model.signature_constants.REGRESS_METHOD_NAME:
-            signature_def,
-        tf.saved_model.signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY:
-            predict_signature_def
-    }
+    # signature_def_map = {
+    #     tf.saved_model.signature_constants.REGRESS_METHOD_NAME:
+    #         signature_def,
+    #     tf.saved_model.signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY:
+    #         predict_signature_def
+    # }
 
     builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
     with tf.Session(graph=tf.Graph()) as sess:
