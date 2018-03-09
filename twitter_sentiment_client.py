@@ -136,8 +136,8 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
   # print(x)  # ['2' '144' '1073' ..., '0' '0' '0']
   # print(y)  # [0 1]
   # print(vocabulary)  # 'breakpoints': '169715', 'shrill': '61929', '1day': '22983'
-  print(vocabulary_inv)  # ["'kitchen"], ['etenstijd'], ['cocktouch'], ['yelm']
-  return
+  # print(vocabulary_inv)  # ['krystyn'], ['litracey'], ['failbringer']
+  # return
   # Randomly shuffle datas
   np.random.seed(123)
   shuffle_indices = np.random.permutation(np.arange(len(y)))
