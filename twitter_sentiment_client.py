@@ -130,8 +130,11 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
   Raises:
     IOError: An error occurred processing test data set.
   """
+  # print(load_data(1))
+  # return
   x, y, vocabulary, vocabulary_inv = load_data(1)
-  print(load_data(1))
+  print(x)
+  print(y)
   return
   # Randomly shuffle datas
   np.random.seed(123)
