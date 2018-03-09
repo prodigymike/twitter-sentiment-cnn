@@ -445,7 +445,8 @@ if FLAGS.save_protobuf:
                                              # [tag_constants.TRAINING],
                                              [tf.saved_model.tag_constants.TRAINING],
                                              # signature_def_map=foo_signatures,
-                                             None,
+                                             # None,
+                                             sess.graph_def,
                                              # assets_collection=foo_assets)
                                              None,
                                              None,
