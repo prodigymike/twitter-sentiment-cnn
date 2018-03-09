@@ -133,8 +133,10 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
   # print(load_data(1))
   # return
   x, y, vocabulary, vocabulary_inv = load_data(1)
-  print(x)
-  print(y)
+  # print(x)  # ['2' '144' '1073' ..., '0' '0' '0']
+  # print(y)  # [0 1]
+  print(vocabulary)
+  print(vocabulary_inv)
   return
   # Randomly shuffle datas
   np.random.seed(123)
