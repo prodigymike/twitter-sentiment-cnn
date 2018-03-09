@@ -426,7 +426,7 @@ export_path = os.path.join(
       compat.as_bytes(str(FLAGS.model_version)))
 '''
 # export_path = '/tmp/sentiment_monitor/1'
-export_path = OUT_DIR + '/SavedModels/1'
+export_path = OUT_DIR + '/SavedModels/2'
 print 'Exporting trained model to', export_path
 builder = saved_model_builder.SavedModelBuilder(export_path)
 
