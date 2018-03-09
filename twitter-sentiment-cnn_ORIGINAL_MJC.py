@@ -438,19 +438,20 @@ if FLAGS.save_protobuf:
     builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
 
     with tf.Session(graph=tf.Graph()) as sess:
-        builder.add_meta_graph_and_variables(sess,
-                                             # [tf.saved_model.tag_constants.TRAINING],  # Tags used to save meta graph.
-                                             [tf.saved_model.tag_constants.SERVING],  # Tags used to save meta graph.
-                                             # sess.graph_def,
-                                             signature_def_map= {
-                                                 "magic_model": tf.saved_model.signature_def_utils.predict_signature_def(
-                                                     inputs={"egg": x, "bacon": y},
-                                                     outputs={"spam": z})
-                                             },
-                                             None,
-                                             None,
-                                             True,
-                                             None)
+        builder.add_meta_graph_and_variables(
+            sess,
+            # [tf.saved_model.tag_constants.TRAINING],  # Tags used to save meta graph.
+            [tf.saved_model.tag_constants.SERVING],  # Tags used to save meta graph.
+            # sess.graph_def,
+            signature_def_map= {
+             "magic_model": tf.saved_model.signature_def_utils.predict_signature_def(
+                 inputs={"egg": x, "bacon": y},
+                 outputs={"spam": z})
+            },
+            None,
+            None,
+            True,
+            None)
     # Add a second MetaGraphDef for inference.
     with tf.Session(graph=tf.Graph()) as sess:
         # builder.add_meta_graph([tag_constants.SERVING])

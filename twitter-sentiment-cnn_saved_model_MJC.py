@@ -463,7 +463,8 @@ builder.add_meta_graph_and_variables(
       signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY:
           classification_signature,
   },
-  legacy_init_op=legacy_init_op)
+  legacy_init_op=legacy_init_op,
+  clear_devices=True)
 
 builder.save()
 
