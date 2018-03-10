@@ -45,19 +45,23 @@ def load_data_and_labels(dataset_fraction):
     """
     print "\tdata_helpers: loading positive examples..."
     positive_examples = list(open(POS_DATASET_PATH).readlines())
-    positive_examples = [s.strip() for s in positive_examples]
+    # print(positive_examples) # text lines
+    positive_examples = [s.strip() for s in positive_examples]  # remove begin/end whitespace
+    # print(positive_examples) # text lines
     print "\tdata_helpers: [OK]"
 
     print "\tdata_helpers: loading negative examples..."
     negative_examples = list(open(NEG_DATASET_PATH).readlines())
-    negative_examples = [s.strip() for s in negative_examples]
+    negative_examples = [s.strip() for s in negative_examples]  # remove begin/end whitespace
     print "\tdata_helpers: [OK]"
 
     positive_examples = sample_list(positive_examples, dataset_fraction)
     negative_examples = sample_list(negative_examples, dataset_fraction)
+    # print(positive_examples) # text lines
 
     # Split by words
     x_text = positive_examples + negative_examples
+    # print(x_text)  # text lines
     print "\tdata_helpers: cleaning strings (splitting words)..."
     x_text = [clean_str(sent) for sent in x_text]
     x_text = [s.split(" ") for s in x_text]
