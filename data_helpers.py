@@ -62,7 +62,7 @@ def load_data_and_labels(dataset_fraction):
     # Split by words
     x_text = positive_examples + negative_examples
     # print(x_text)  # text lines
-    print "\tdata_helpers: cleaning strings (splitting words)..."
+    print "\tdata_helpers: cleaning strings (splitting words in string)..."
     x_text = [clean_str(sent) for sent in x_text]
     x_text = [s.split(" ") for s in x_text]
     print "\tdata_helpers: [OK]"
@@ -126,7 +126,7 @@ def build_vocab():
 
 def build_input_data(sentences, labels, vocabulary):
     """
-    Maps sentencs and labels to vectors based on a vocabulary.
+    Maps sentences and labels to vectors based on a vocabulary.
     Returns the mapped lists. 
     """
     x = np.array([[vocabulary[word] for word in sentence]
@@ -174,6 +174,7 @@ def load_data(dataset_fraction):
 
     print "\tdata_helpers: building processed datasets..."
     x, y = build_input_data(sentences_padded, labels, vocabulary)
+    print(sentences_padded)
     print "\tdata_helpers: [OK]"
 
     return [x, y, vocabulary, vocabulary_inv]
